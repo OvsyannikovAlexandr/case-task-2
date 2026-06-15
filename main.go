@@ -19,10 +19,13 @@ func main() {
 	fmt.Printf("Weekday of your birthday: %s\n", weekday)
 
 	if isLeapYear(t.Year()) {
-		fmt.Printf("Your birthday year is leap")
+		fmt.Printf("Your birthday year is leap\n")
 	} else {
-		fmt.Printf("Your birthday year is not leap")
+		fmt.Printf("Your birthday year is not leap\n")
 	}
+
+	age := calculateAge(t)
+	fmt.Printf("Your age: %d\n", age)
 }
 
 func inputBirthDate() BirthDate {
