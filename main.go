@@ -26,6 +26,8 @@ func main() {
 
 	age := calculateAge(t)
 	fmt.Printf("Your age: %d\n", age)
+
+	printDigitalDate(date)
 }
 
 func inputBirthDate() BirthDate {
@@ -64,4 +66,30 @@ func calculateAge(birthDate time.Time) int {
 		years--
 	}
 	return years
+}
+
+var digits = map[rune][5]string{
+	'0': {"***", "* *", "* *", "* *", "***"},
+	'1': {"  *", "  *", "  *", "  *", "  *"},
+	'2': {"***", "  *", "***", "* ", "***"},
+	'3': {"***", "  *", "***", "  *", "***"},
+	'4': {"* *", "* *", "***", "  *", "  *"},
+	'5': {"***", "* ", "***", "  *", "***"},
+	'6': {"***", "* ", "***", "* *", "***"},
+	'7': {"***", "  *", "  *", "  *", "  *"},
+	'8': {"***", "* *", "***", "* *", "***"},
+	'9': {"***", "* *", "***", "  *", "***"},
+	'.': {"   ", "   ", "   ", "   ", " * "},
+}
+
+func printDigitalDate(d BirthDate) {
+	dateStr := fmt.Sprintf("%02d.%02d.%04d", d.Day, d.Month, d.Year)
+
+	for row := 0; row < 5; row++ {
+		line := ""
+		for _, char := range dateStr {
+			line += digits[char][row] + "  "
+		}
+		fmt.Println(line)
+	}
 }
